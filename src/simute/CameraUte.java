@@ -93,16 +93,16 @@ public class CameraUte {
         cog[1] -> Center of Gravity Green
         cog[2] -> Center of Gravity Blue   
         cog = 0 -> peso en la mitad horizontal de la imagen
-        cog < 0 -> peso hacia la izquierda de la imagen
-        cog > 0 -> peso hacia la derecha de la imagen
+        cog < 0 -> peso hacia la derecha de la imagen
+        cog > 0 -> peso hacia la izquierda de la imagen
     
         Fila(Vertical)
         cog[3] -> Center of Gravity Red
         cog[4] -> Center of Gravity Green
         cog[5] -> Center of Gravity Blue   
         cog = 0 -> peso en la mitad vertical de la imagen
-        cog < 0 -> peso hacia arriba de la imagen
-        cog > 0 -> peso hacia abajo de la imagen    
+        cog < 0 -> peso hacia abajo de la imagen
+        cog > 0 -> peso hacia arriba de la imagen    
     */
     public int[] getCogRgb() {
         int[][] hist = getHistAvgExcessRgb();

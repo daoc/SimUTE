@@ -19,8 +19,10 @@ import javax.imageio.ImageIO;
  */
 public class HistCog {
 
+    public static String FILENAME = "C:\\Users\\dordonez\\Desktop\\_tmp\\SimUTE_imgs\\MiImg_A_1539873428981.png";
+    
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(HistCog.getHistAvgExcessRgb()[4]));
+        System.out.println(Arrays.toString(HistCog.getCogRgb()));
     }
     
     public static Raster readImgFile(String fileName) {
@@ -33,7 +35,7 @@ public class HistCog {
     }
 
     public static int[][] getHistAvgExcessRgb() {
-        Raster raster = readImgFile("MiImg_A_1539873428981.png");
+        Raster raster = readImgFile(FILENAME);
         int[][] histAvgRGB = new int[6][raster.getWidth()];
         //Histograma por columna (Horizontal)
         for (int x = 0; x < raster.getWidth(); x++) {
@@ -65,4 +67,39 @@ public class HistCog {
         }
         return histAvgRGB;
     }
+    
+ public static int[] getCogRgb() {
+        int[][] hist = getHistAvgExcessRgb();
+        int[] cog = new int[6];
+        int ncol = hist[0].length;
+        int nrow = hist[3].length;
+        int EfxR, EfxG, EfxB, EfR, EfG, EfB;
+        EfxR = EfxG = EfxB = EfR = EfG = EfB = 0;
+        
+        //Center of Gravity por columna (horizontal)
+        for(int x = 0; x < ncol; x++) {
+            EfxR += hist[0][x] * (x+1);
+            EfR += hist[0][x];
+            EfxG += hist[1][x] * (x+1);
+            EfG += hist[1][x];
+            EfxB += hist[2][x] * (x+1);
+            EfB += hist[2][x];            
+        }      
+        cog[0] = EfR > 0 ? (ncol / 2) - (EfxR / EfR) : 0;
+        cog[1] = EfG > 0 ? (ncol / 2) - (EfxG / EfG) : 0;
+        cog[2] = EfB > 0 ? (ncol / 2) - (EfxB / EfB) : 0;
+        //Center of Gravity por fila (vertical)
+        for(int x = 0; x < nrow; x++) {
+            EfxR += hist[3][x] * (x+1);
+            EfR += hist[3][x];
+            EfxG += hist[4][x] * (x+1);
+            EfG += hist[4][x];
+            EfxB += hist[5][x] * (x+1);
+            EfB += hist[5][x];            
+        }      
+        cog[3] = EfR > 0 ? (nrow / 2) - (EfxR / EfR) : 0;
+        cog[4] = EfG > 0 ? (nrow / 2) - (EfxG / EfG) : 0;
+        cog[5] = EfB > 0 ? (nrow / 2) - (EfxB / EfB) : 0;
+        return cog;
+    }    
 }
