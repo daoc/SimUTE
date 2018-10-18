@@ -3,6 +3,12 @@ package simute;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import simbad.sim.CameraSensor;
 
 /**
@@ -15,6 +21,15 @@ public class CameraUte {
     public CameraUte(CameraSensor cam) {
         //cam.setUpdateOnEachFrame(true);
         this.cam = cam;
+    }
+    
+    public void saveImageFile(String preFileName) {
+        try {
+            String fileName = preFileName + new Date().getTime() + ".png";
+            ImageIO.write(getSnapshot(), "PNG", new File(fileName));
+        } catch (IOException ex) {
+            Logger.getLogger(CameraUte.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public BufferedImage getSnapshot() {
