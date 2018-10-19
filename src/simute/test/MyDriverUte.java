@@ -25,7 +25,7 @@ public class MyDriverUte implements DriverUte {
         // actualiza dirección cada 10 ciclos
         if ((bot.getCounter() % 10) == 0) {
             int cogG = cam.getCogRgb()[1];
-            bot.giro(cogG*1.5);
+            bot.giro(-cogG*1.5);
             System.out.println(cogG);
         }
     }

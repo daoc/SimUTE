@@ -65,9 +65,9 @@ public class CameraUte {
                 int exR = 2*r-(g+b);
                 int exG = 2*g-(r+b);
                 int exB = 2*b-(r+g);
-                histAvgRGB[0][x] += (exR > 0 ? exR : 0) / raster.getHeight();
-                histAvgRGB[1][x] += (exG > 0 ? exG : 0) / raster.getHeight();
-                histAvgRGB[2][x] += (exB > 0 ? exB : 0) / raster.getHeight();
+                histAvgRGB[0][x] += (exR > 0 ? 1 : 0);
+                histAvgRGB[1][x] += (exG > 0 ? 1 : 0);
+                histAvgRGB[2][x] += (exB > 0 ? 1 : 0);
             }
         }
         //Histograma por fila (vertical)
@@ -79,9 +79,9 @@ public class CameraUte {
                 int exR = 2*r-(g+b);
                 int exG = 2*g-(r+b);
                 int exB = 2*b-(r+g);
-                histAvgRGB[3][y] += (exR > 0 ? exR : 0) / raster.getWidth();
-                histAvgRGB[4][y] += (exG > 0 ? exG : 0) / raster.getWidth();
-                histAvgRGB[5][y] += (exB > 0 ? exB : 0) / raster.getWidth();
+                histAvgRGB[3][y] += (exR > 0 ? 1 : 0);
+                histAvgRGB[4][y] += (exG > 0 ? 1 : 0);
+                histAvgRGB[5][y] += (exB > 0 ? 1 : 0);
             }
         }        
         return histAvgRGB;
@@ -93,16 +93,18 @@ public class CameraUte {
         cog[1] -> Center of Gravity Green
         cog[2] -> Center of Gravity Blue   
         cog = 0 -> peso en la mitad horizontal de la imagen
-        cog < 0 -> peso hacia la derecha de la imagen
-        cog > 0 -> peso hacia la izquierda de la imagen
+        cog > 0 -> peso hacia la derecha de la imagen
+        cog < 0 -> peso hacia la izquierda de la imagen
+        
     
         Fila(Vertical)
         cog[3] -> Center of Gravity Red
         cog[4] -> Center of Gravity Green
         cog[5] -> Center of Gravity Blue   
         cog = 0 -> peso en la mitad vertical de la imagen
+        cog > 0 -> peso hacia arriba de la imagen
         cog < 0 -> peso hacia abajo de la imagen
-        cog > 0 -> peso hacia arriba de la imagen    
+            
     */
     public int[] getCogRgb() {
         int[][] hist = getHistAvgExcessRgb();
@@ -110,9 +112,9 @@ public class CameraUte {
         int ncol = hist[0].length;
         int nrow = hist[3].length;
         int EfxR, EfxG, EfxB, EfR, EfG, EfB;
-        EfxR = EfxG = EfxB = EfR = EfG = EfB = 0;
-        
+ 
         //Center of Gravity por columna (horizontal)
+        EfxR = EfxG = EfxB = EfR = EfG = EfB = 0;
         for(int x = 0; x < ncol; x++) {
             EfxR += hist[0][x] * (x+1);
             EfR += hist[0][x];
@@ -121,10 +123,11 @@ public class CameraUte {
             EfxB += hist[2][x] * (x+1);
             EfB += hist[2][x];            
         }      
-        cog[0] = EfR > 0 ? (ncol / 2) - (EfxR / EfR) : 0;
-        cog[1] = EfG > 0 ? (ncol / 2) - (EfxG / EfG) : 0;
-        cog[2] = EfB > 0 ? (ncol / 2) - (EfxB / EfB) : 0;
+        cog[0] = EfR > 0 ? (EfxR / EfR) - (ncol / 2) : 0;
+        cog[1] = EfG > 0 ? (EfxG / EfG) - (ncol / 2) : 0;
+        cog[2] = EfB > 0 ? (EfxB / EfB) - (ncol / 2) : 0;
         //Center of Gravity por fila (vertical)
+        EfxR = EfxG = EfxB = EfR = EfG = EfB = 0;
         for(int x = 0; x < nrow; x++) {
             EfxR += hist[3][x] * (x+1);
             EfR += hist[3][x];

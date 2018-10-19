@@ -1,10 +1,8 @@
 
 package simute.test;
 
-import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import javafx.beans.binding.Bindings;
 import simute.BotUte;
 import simute.CameraUte;
 import simute.DriverUte;
@@ -17,7 +15,7 @@ import simute.RunSimUte;
  */
 public class TrainUte implements DriverUte {
     private static BlockingQueue<String> queue = new LinkedBlockingQueue<>(20);
-    private static final boolean SAVE_IMAGES = true;
+    private static final boolean SAVE_IMAGES = false;
     
     public static void main(String[] args) {
         RunSimUte.init(
