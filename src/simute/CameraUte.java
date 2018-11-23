@@ -19,7 +19,7 @@ public class CameraUte {
     private CameraSensor cam;
     
     public CameraUte(CameraSensor cam) {
-        //cam.setUpdateOnEachFrame(true);
+        cam.setUpdateOnEachFrame(true);
         this.cam = cam;
     }
     

@@ -6,8 +6,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -49,7 +47,7 @@ public class EnviaImagen extends Thread {
                 baos.close();
                 return buffer;
             } catch (InterruptedException | IOException ex) {
-                Logger.getLogger(RemoteRobot.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
             return null;
         }

@@ -15,7 +15,7 @@ import simute.RunSimUte;
  */
 public class TrainUte implements DriverUte {
     private static BlockingQueue<String> queue = new LinkedBlockingQueue<>(20);
-    private static final boolean SAVE_IMAGES = true;
+    private static final boolean SAVE_IMAGES = false;
     
     public static void main(String[] args) {
         RunSimUte.init(
