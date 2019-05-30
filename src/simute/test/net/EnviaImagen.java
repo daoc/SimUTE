@@ -30,14 +30,6 @@ public class EnviaImagen extends Thread {
 
         }
         
-        public void addImage(BufferedImage image) {
-            try {
-                imageQueue.put(image);
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
-        }
-        
         //Este método entrega la imagen tomada por la cámara como String en Base64
         private String getImageData() {
             try {
@@ -53,4 +45,13 @@ public class EnviaImagen extends Thread {
             }
             return null;
         }
+        
+        public void addImage(BufferedImage image) {
+            try {
+                imageQueue.put(image);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }        
+        
     }    
