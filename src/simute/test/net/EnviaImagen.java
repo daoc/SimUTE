@@ -4,6 +4,7 @@ package simute.test.net;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import javax.imageio.ImageIO;
@@ -37,7 +38,8 @@ public class EnviaImagen extends Thread {
             }
         }
         
-        private byte[] getImageData() {
+        //Este método entrega la imagen tomada por la cámara como String en Base64
+        private String getImageData() {
             try {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 BufferedImage image = imageQueue.take();
@@ -45,7 +47,7 @@ public class EnviaImagen extends Thread {
                 baos.flush();
                 byte[] buffer = baos.toByteArray();
                 baos.close();
-                return buffer;
+                return Base64.getEncoder().encodeToString(buffer);
             } catch (InterruptedException | IOException ex) {
                 ex.printStackTrace();
             }

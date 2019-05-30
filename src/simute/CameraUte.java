@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import simbad.sim.CameraSensor;
+import simute.test.SaveImgThread;
 
 /**
  *
@@ -24,12 +25,13 @@ public class CameraUte {
     }
     
     public void saveImageFile(String preFileName) {
-        try {
-            String fileName = preFileName + new Date().getTime() + ".png";
-            ImageIO.write(getSnapshot(), "PNG", new File(fileName));
-        } catch (IOException ex) {
-            Logger.getLogger(CameraUte.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new SaveImgThread(this, preFileName).start();
+//        try {
+//            String fileName = preFileName + new Date().getTime() + ".png";
+//            ImageIO.write(getSnapshot(), "PNG", new File(fileName));
+//        } catch (IOException ex) {
+//            Logger.getLogger(CameraUte.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
     public BufferedImage getSnapshot() {
