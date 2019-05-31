@@ -33,10 +33,10 @@ public class EnviaInstruccion extends Thread {
             }
         }
         
-        private byte[] getInstruccion() {
+        private String getInstruccion() {
             try {
                 String instruccion = commandQueue.take();
-                return instruccion.getBytes();
+                return instruccion;
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
