@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>griinf.daoc</groupId>
+	<artifactId>SimUTE</artifactId>
+	<version>3.0-SNAPSHOT</version>
+	<name>SimUTE</name>
+	<description>SimUTE con JPCT</description>
+	<developers>
+		<developer>
+			<name>Diego Ordóñez-Camacho</name>
+			<email>dordonez@ute.edu.ec</email>
+			<organization>Grupo de Investigación en Informática (GrIInf), Universidad UTE</organization>
+		</developer>
+	</developers>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+	<repositories>
+		<repository>
+			<id>lib</id>
+			<!-- <url>file:///${project.basedir}/lib</url> -->
+			<url>https://github.com/daoc/maven-repository/raw/master/</url>
+		</repository>
+	</repositories>
+	<dependencies>
+		<dependency>
+			<!-- Original en: http://www.jpct.net/ -->
+			<groupId>threeDengine</groupId>
+			<artifactId>jpct</artifactId>
+			<version>1.15.3</version>
+		</dependency>
+	</dependencies>
+</project>
