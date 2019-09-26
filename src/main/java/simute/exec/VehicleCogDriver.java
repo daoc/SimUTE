@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 
 import simute.Env;
 import simute.ImageRenderer;
+import simute.PidController;
 import simute.gui.I_Canvas;
 
 /**
@@ -18,12 +19,16 @@ public class VehicleCogDriver implements I_Driver {
 	private float speed = 0;
 	private float turn = 0;
 	private I_Canvas canvas;
+	private PidController pidCtrl;
 	
 	public void update() {
 		int[] cog = ImageRenderer.getCogRgb(canvas.getFrameImage());
 		if(wFlag && (speed < (Env.MAX_SPEED-Env.SPEED_STEP))) speed += Env.SPEED_STEP;
 		if(sFlag && (speed > -(Env.MAX_SPEED-Env.SPEED_STEP))) speed -= Env.SPEED_STEP;
-		turn = cog[1] * 0.001f;
+		//turn = cog[1] * 0.001f;
+		
+		turn = pidCtrl.loop(cog[1]);
+		
 		System.out.println("CogG: " + cog[1] + " / Turn: " + turn);
 	}
 
@@ -37,6 +42,10 @@ public class VehicleCogDriver implements I_Driver {
 	}
 	
 	public void reset() {
+	}
+	
+	public void setPidController(PidController pidCtrl) {
+		this.pidCtrl = pidCtrl;
 	}
 	
 	public void setCanvas(I_Canvas canvas) {
