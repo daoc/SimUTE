@@ -9,6 +9,7 @@ import simute.ImageRenderer;
 public class VehicleKeyboardLauncher extends A_VehicleLauncher {
 	
 	public static void main(String[] args) {
+		//init() está en super
 		new VehicleKeyboardLauncher().init();
 	}
 	
