@@ -29,7 +29,7 @@ public class PidController {
 	
 	public float loop(float input) {
 		float output = 0;
-		float error = input - setPoint;
+		float error = setPoint - input;
 		float now = System.currentTimeMillis();
 		float gap = now - prevTime;
 		

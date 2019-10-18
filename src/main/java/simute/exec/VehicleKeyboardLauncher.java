@@ -3,7 +3,11 @@ package simute.exec;
 import simute.ImageRenderer;
 
 /**
-*
+* Utiliza, de A_VehicleLauncher:
+*   init()
+*	I_Gui canvas
+*	VehicleScene car
+*	I_Driver driver
 * @author dordonez@ute.edu.ec
 */
 public class VehicleKeyboardLauncher extends A_VehicleLauncher {

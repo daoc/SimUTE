@@ -13,7 +13,7 @@ import simute.gui.I_Canvas;
 *
 * @author dordonez@ute.edu.ec
 */
-public class VehicleCogDriver implements I_Driver {
+public class VehiclePidDriver implements I_Driver {
 	protected boolean wFlag = false;
 	protected boolean sFlag = false;
 	private float speed = 0;
@@ -25,7 +25,6 @@ public class VehicleCogDriver implements I_Driver {
 		int[] cog = ImageRenderer.getCogRgb(canvas.getFrameImage());
 		if(wFlag && (speed < (Env.MAX_SPEED-Env.SPEED_STEP))) speed += Env.SPEED_STEP;
 		if(sFlag && (speed > -(Env.MAX_SPEED-Env.SPEED_STEP))) speed -= Env.SPEED_STEP;
-		//turn = cog[1] * 0.001f;
 		
 		turn = pidCtrl.loop(cog[1]);
 		
