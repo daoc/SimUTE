@@ -19,10 +19,14 @@ public class ImageRenderer {
 
 	@SuppressWarnings("unused")
 	public static void saveSceneFrame(I_Canvas canvas, long frameCount, float speed, float turn) {
+		File folder = new File(Env.IMG_FRAMES_FOLDER);
+		folder.mkdirs();
 		if (Env.SAVE_SCENE_FRAMES && (frameCount % Env.SAVE_EACH_X_FRAMES == 0)) {
-			String fileName = String.format("sceneFrames/s_%f-t_%f-%d.png", speed, turn, new Date().getTime());
+			String fileName = String.format("s_%f-t_%f-%d.png", speed, turn, new Date().getTime());
 			try {
-				ImageIO.write(canvas.getFrameImage(), "png", new File(fileName));
+				File f = new File(folder, fileName);
+				f.createNewFile();
+				ImageIO.write(canvas.getFrameImage(), "png", f);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
