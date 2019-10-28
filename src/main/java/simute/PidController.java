@@ -32,13 +32,18 @@ public class PidController {
 		float error = setPoint - input;
 		float now = System.currentTimeMillis();
 		float gap = now - prevTime;
-		
-		integral += error * gap;
-		derivada = (error - prevError) / gap;
-		
-		if(P) output += kP * error;
-		if(I) output += kI * integral;
-		if(D) output += kD * derivada;
+
+		if(P) {
+			output += kP * error;
+		}
+		if(I) {
+			integral += error * gap;
+			output += kI * integral;
+		}
+		if(D) {
+			derivada = (error - prevError) / gap;
+			output += kD * derivada;
+		}
 		
 		prevError = error;
 		prevTime = now;
