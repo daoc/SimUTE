@@ -16,7 +16,7 @@ public class VehiclePidLauncher extends A_VehicleLauncher {
 		super(new VehiclePidDriver());
 
 		PidController pidCtrl = new PidController(true, false, false);
-		pidCtrl.setConstants(0f, 0f, 0f);
+		pidCtrl.setConstants(-0.001f, 0f, 0f);
 		pidCtrl.setExpectedValue(0);
 		
 		((VehiclePidDriver)driver).setPidController(pidCtrl);

@@ -5,7 +5,8 @@ public class PidController {
 	public final boolean P, I, D; 
 	private float kP, kI, kD;
 	private float setPoint;
-	private float integral, derivada, prevError, prevTime;
+	private float integral, prevError;
+	private long prevTime;
 
 	public PidController(boolean P, boolean I, boolean D) {
 		this.P = P;
@@ -30,8 +31,9 @@ public class PidController {
 	public float loop(float input) {
 		float output = 0;
 		float error = setPoint - input;
-		float now = System.currentTimeMillis();
-		float gap = now - prevTime;
+		float derivada = 0;
+		long now = System.currentTimeMillis();
+		long gap = now - prevTime;
 
 		if(P) {
 			output += kP * error;
@@ -41,7 +43,9 @@ public class PidController {
 			output += kI * integral;
 		}
 		if(D) {
-			derivada = (error - prevError) / gap;
+			if(gap > 0) {
+				derivada = (error - prevError) / gap;
+			}
 			output += kD * derivada;
 		}
 		
