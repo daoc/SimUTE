@@ -10,4 +10,6 @@ https://www.youtube.com/watch?v=wrxDyAGRA3w
 ## Cargar SimUTE en STS4
 https://www.youtube.com/watch?v=RYoj_oDPPw0&t=49s
 
+## Guardar frames como archivos (imágenes)
+https://youtu.be/3NgwR3C2REU
 
