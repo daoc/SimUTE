@@ -29,7 +29,7 @@ public class Env {
 	public static final float TURN_STEP = 0.001f;
 	public static final float STOP = 0f;
 	
-	public static final boolean SAVE_SCENE_FRAMES = true;
+	public static final boolean SAVE_SCENE_FRAMES = false;
 	public static final int SAVE_EACH_X_FRAMES = 30;
 	public static final String IMG_FRAMES_FOLDER = "sceneFrames";
 }
