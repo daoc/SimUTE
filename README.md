@@ -1,5 +1,5 @@
 # SimUTE
-Simulador en Java
+Simulador en  Java
 
 ## Repositorio SimUTE
 https://github.com/daoc/SimUTE
